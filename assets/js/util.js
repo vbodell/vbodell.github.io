@@ -8,7 +8,7 @@ const markerKeys = {
   total: "total"
 };
 
-calcHarry();
+calcBasics();
 
 function getCurrentDay() {
   var today = new Date();
@@ -28,7 +28,8 @@ function getHarryProgress() {
   return curDayNdx * kExpectedAverage * kUsers;
 }
 
-function calcHarry() {
+function calcBasics() {
+  document.getElementById("day-number").innerText = getCurrentDay() + "/" + kChallengeDays;
   document.getElementById("scoreboard--aim-avg").innerText = kExpectedAverage * kUsers + " (" + kExpectedAverage + " per pers)";
   document.getElementById("scoreboard--aim-total").innerText = getHarryProgress();
 }
