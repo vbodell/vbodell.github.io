@@ -29,7 +29,8 @@ function getHarryProgress() {
 }
 
 function calcBasics() {
-  document.getElementById("day-number").innerText = getCurrentDay() + "/" + kChallengeDays;
+  var day = getCurrentDay() + 1; // Use +1 for display, but not averages
+  document.getElementById("day-number").innerText = "Dag " + day + "/" + kChallengeDays;
   document.getElementById("scoreboard--aim-avg").innerText = kExpectedAverage * kUsers + " (" + kExpectedAverage + " per pers)";
   document.getElementById("scoreboard--aim-total").innerText = getHarryProgress();
 }
