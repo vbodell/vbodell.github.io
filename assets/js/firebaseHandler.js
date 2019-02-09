@@ -40,9 +40,11 @@ function writeStepEntry(userId, name, date, steps) {
 function updateScoreboard(data) {
   var scoreboard = document.getElementById("scoreboard");
   var totalEntry = document.getElementById("scoreboard--total-steps");
+  var totalAvgLabel = document.getElementById("scoreboard--total-steps-avg");
 
   var totalSteps = {};
   var runningTotal = 0;
+  var curDay = getCurrentDay();
 
   for (user in data) {
     totalSteps[user] = 0;
@@ -50,12 +52,16 @@ function updateScoreboard(data) {
       totalSteps[user] += data[user][entry]['steps'];
 
     for (var i = 0, row; row = scoreboard.rows[i]; i++) {
-      if (user == row.cells[0].innerText)
+      if (user == row.cells[0].innerText) {
         row.cells[1].innerText = totalSteps[user];
+        row.cells[2].innerText = totalSteps[user] / curDay;
+      }
     }
 
     runningTotal += totalSteps[user];
   }
   totalEntry.innerText = runningTotal;
+  totalAvgLabel.innerText = parseInt(runningTotal / curDay) + " (" + parseInt(runningTotal / (curDay * kUsers)) + " per pers)";
+
   updateMap(markerKeys.total, runningTotal);
 }

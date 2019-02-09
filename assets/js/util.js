@@ -1,4 +1,4 @@
-const dayZero = new Date(2019, 1, 10);
+const dayZero = new Date(2019, 1, 5);
 const kUsers = 8;
 const kChallengeDays = 40;
 const kExpectedAverage = 10000;
@@ -8,7 +8,7 @@ const markerKeys = {
   total: "total"
 };
 
-calcAvg();
+calcHarry();
 
 function getCurrentDay() {
   var today = new Date();
@@ -28,6 +28,7 @@ function getHarryProgress() {
   return curDayNdx * kExpectedAverage * kUsers;
 }
 
-function calcAvg() {
-  document.getElementById("scoreboard--aimed-avg").innerText = getHarryProgress();
+function calcHarry() {
+  document.getElementById("scoreboard--aim-avg").innerText = kExpectedAverage * kUsers + " (" + kExpectedAverage + " per pers)";
+  document.getElementById("scoreboard--aim-total").innerText = getHarryProgress();
 }
