@@ -56,6 +56,7 @@ layout: home
 <div id="step-submit-container">
   <label id="step-submit--warning-label">Fyll i en siffra tack!</label>
   <br/>
+
   <label>Vem är du:</label>
   <select id="step-submit--competitor">
     <option value="Göran">Göran</option>
@@ -68,8 +69,16 @@ layout: home
     <option value="Karin">Karin</option>
   </select>
   <br/>
+
+  <label for="date">Välj dag:</label>
+  <input type="date" id="step-submit--date" name="date"
+    required min="{{ site.start-date }}" max="{{ site.end-date }}"
+    value="{{ 'now' | date: '%Y-%m-%d' }}">
+  <br/>
+
   <label for="steps">Antal Steg:</label>
-  <input type="text" id="step-submit--steps" name="steps" required minlength="4" maxlength="8">
+  <input type="number" id="step-submit--steps" name="steps" required minlength="4" maxlength="8">
+
   <br/>
   <button type="button" id="step-submit--submit-button">Klar!</button>
 </div>

@@ -3,6 +3,7 @@ document.getElementById("step-submit--submit-button").addEventListener("click", 
 function submitSteps() {
   var user = document.getElementById("step-submit--competitor").value;
   var steps = parseInt(document.getElementById("step-submit--steps").value);
+  var submitDate = new Date(document.getElementById("step-submit--date").value);
   var label = document.getElementById("step-submit--warning-label");
 
   var tableEntries = document.getElementsByClassName("scoreboard--row");
@@ -21,7 +22,6 @@ function submitSteps() {
       }
     }
     // console.log(user + " submitted " + steps + " steps.");
-    var d = new Date();
-    writeStepEntry(user, user, d, steps);
+    writeStepEntry(user, user, submitDate, steps);
   }
 }

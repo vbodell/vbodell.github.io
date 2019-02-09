@@ -27,6 +27,8 @@ theme: minima
 plugins:
   - jekyll-feed
 
+start-date: 2019-02-10
+end-date: 2019-03-22
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.

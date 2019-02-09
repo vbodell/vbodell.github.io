@@ -1,4 +1,4 @@
-const dayZero = new Date(2019, 1, 8);
+const dayZero = new Date(2019, 1, 10);
 const kUsers = 8;
 const kChallengeDays = 40;
 const kExpectedAverage = 10000;
