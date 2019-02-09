@@ -57,5 +57,5 @@ function updateScoreboard(data) {
     runningTotal += totalSteps[user];
   }
   totalEntry.innerText = runningTotal;
-  updateMap(runningTotal);
+  updateMap(markerKeys.total, runningTotal);
 }

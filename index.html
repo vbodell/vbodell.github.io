@@ -11,6 +11,10 @@ layout: home
     <th>Namn</th>
     <th>Steg</th>
   </tr>
+  <tr>
+    <th>Hurtige Harry</th>
+    <th id="scoreboard--aimed-avg">0</th>
+  </tr>
   <tr class="scoreboard--row">
     <td class="competitor">Göran</td>
     <td class="competitor--stepcount">0</td>
@@ -50,6 +54,9 @@ layout: home
 </table>
 
 <div id="step-submit-container">
+  <label id="step-submit--warning-label">Fyll i en siffra tack!</label>
+  <br/>
+  <label>Vem är du:</label>
   <select id="step-submit--competitor">
     <option value="Göran">Göran</option>
     <option value="Linnea">Linnea</option>
@@ -60,14 +67,16 @@ layout: home
     <option value="Victor">Victor</option>
     <option value="Karin">Karin</option>
   </select>
+  <br/>
   <label for="steps">Antal Steg:</label>
   <input type="text" id="step-submit--steps" name="steps" required minlength="4" maxlength="8">
+  <br/>
   <button type="button" id="step-submit--submit-button">Klar!</button>
-  <label style="display:none" id="step-submit--warning-label">Fyll i en siffra tack!</label>
 </div>
 
 <script src="/assets/js/firebaseHandler.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6r5GwtKvfN4mAq3kkj68if_C9CDw0TEA&callback=initMap"
 type="text/javascript"></script>
+<script src="assets/js/util.js"></script>
 <script src="assets/js/submitSteps.js"></script>
 <script src="assets/js/mapsHandler.js"></script>

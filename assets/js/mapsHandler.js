@@ -1,7 +1,11 @@
-
 var route = null;
-var lastMarker = null;
 var thisMap = null;
+var markers = {
+  [markerKeys.total]: {desc: "Här är vi nu!", marker: null, label: "Vi"},
+  [markerKeys.harry]: {desc: "Här borde vi vara...", marker: null, label: "Harry"}
+};
+
+updateMap(markerKeys.harry, getHarryProgress());
 
 function initMap() {
   console.log("initializing map");
@@ -12,10 +16,11 @@ function initMap() {
   directionsDisplay.setMap(thisMap);
 
   var request = {
-    origin: 'Synålsvägen 19, Bromma, Stockholm',
+    origin: 'Gibraltar',
     destination: 'Räntans Gård',
     travelMode: 'WALKING'
   }
+
   directionsService.route(request, function(response, status) {
     if (status == 'OK') {
       route = response['routes'][0]['legs'][0];
@@ -26,23 +31,27 @@ function initMap() {
   });
 }
 
-function addMarker(lat, lng) {
+function addMarker(markerKey, lat, lng) {
   /* Remove previous marker */
-  if (lastMarker)
-    lastMarker.setMap(null);
+  if (markers[markerKey].marker)
+    markers[markerKey].marker.setMap(null);
   var position = {lat: lat, lng: lng};
-  lastMarker = new google.maps.Marker({
+  markers[markerKey].marker = new google.maps.Marker({
     position: position,
     map: thisMap,
-    title: "Här är vi nu!"
+    // icon: ,
+    label: markers[markerKey].label,
+    animation: google.maps.Animation.DROP,
+    title: markers[markerKey].desc
   });
 }
 
-function updateMap(totalSteps) {
+function updateMap(key, distance) {
   if (route == null) {
-    setInterval(function() { updateMap(totalSteps); }, 5000); /* Try again in 5 sec */
+    setTimeout(function() { updateMap(key, distance); }, 2000); /* Try again in 5 sec */
+    return;
   }
-  console.log("Updating map w/ total " + totalSteps + " steps.");
+
   var coveredDistance = 0;
   var routeSteps = route['steps'];
   var prevStep = null;
@@ -52,10 +61,8 @@ function updateMap(totalSteps) {
     prevStep = routeStep;
 
     coveredDistance += routeStep['distance']['value'];
-    if (coveredDistance >= totalSteps)
+    if (coveredDistance >= distance)
       break;
   }
-
-  console.log("Made it to " + prevStep['end_location']);
-  addMarker(prevStep['end_location'].lat(), prevStep['end_location'].lng());
+  addMarker(key, prevStep['end_location'].lat(), prevStep['end_location'].lng());
 }

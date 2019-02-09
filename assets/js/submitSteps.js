@@ -8,10 +8,10 @@ function submitSteps() {
   var tableEntries = document.getElementsByClassName("scoreboard--row");
 
   if (isNaN(steps)) {
-    label.style["display"] = "inline";
+    label.style.color = "red";
   }
   else {
-    label.style["display"] = "none";
+    label.style.color = "white";
     for (row in tableEntries) {
       for (var i = 0, row; row = tableEntries[i]; i++) {
         if (row.cells[0].innerText == user) {
