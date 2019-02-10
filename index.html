@@ -85,7 +85,7 @@ layout: home
   <label for="date">Välj dag:</label>
   <input type="date" id="step-submit--date" name="date"
     required min="{{ site.start-date }}" max="{{ site.end-date }}"
-    value="{{ 'now' | date: '%Y-%m-%d' }}">
+    value=" {{ site.start-date }} ">
   <br/>
 
   <label for="steps">Antal Steg:</label>

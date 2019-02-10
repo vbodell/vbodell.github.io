@@ -33,4 +33,7 @@ function calcBasics() {
   document.getElementById("day-number").innerText = "Dag " + day + "/" + kChallengeDays;
   document.getElementById("scoreboard--aim-avg").innerText = kExpectedAverage * kUsers + " (" + kExpectedAverage + " per pers)";
   document.getElementById("scoreboard--aim-total").innerText = getHarryProgress();
+
+  var d = new Date();
+  document.getElementById("step-submit--date").value = d.toISOString().slice(0,10);
 }
