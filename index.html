@@ -65,6 +65,8 @@ layout: home
   </tr>
 </table>
 
+<a href="http://www.stegraknare.se/omvandla">Omvandla träning till steg här!</a>
+
 <div id="step-submit-container">
   <label id="step-submit--warning-label">Fyll i en siffra tack!</label>
   <br/>
@@ -85,7 +87,7 @@ layout: home
   <label for="date">Välj dag:</label>
   <input type="date" id="step-submit--date" name="date"
     required min="{{ site.start-date }}" max="{{ site.end-date }}"
-    value=" {{ site.start-date }} ">
+    value="{{ site.start-date }}">
   <br/>
 
   <label for="steps">Antal Steg:</label>

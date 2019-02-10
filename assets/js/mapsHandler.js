@@ -16,8 +16,8 @@ function initMap() {
   directionsDisplay.setMap(thisMap);
 
   var request = {
-    origin: 'Gibraltar',
-    destination: 'Räntans Gård',
+    origin: kOrigin,
+    destination: kDestination,
     travelMode: 'WALKING'
   }
 
@@ -49,6 +49,12 @@ function addMarker(markerKey, lat, lng) {
 function updateMap(key, distance) {
   if (route == null) {
     setTimeout(function() { updateMap(key, distance); }, 2000); /* Try again in 5 sec */
+    return;
+  }
+
+  if (distance == 0) {
+    var startLoc = route['steps'][0]['start_location'];
+    addMarker(key, startLoc.lat(), startLoc.lng());
     return;
   }
 

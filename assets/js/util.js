@@ -1,7 +1,9 @@
-const dayZero = new Date(2019, 1, 10);
+const dayZero = new Date(2019, 1, 12);
 const kUsers = 8;
-const kChallengeDays = 40;
-const kExpectedAverage = 10000;
+const kChallengeDays = 4;
+const kExpectedAverage = 8750;
+const kOrigin = "Räntans Gård";
+const kDestination = "Synålsvägen 19, Bromma";
 
 const markerKeys = {
   harry: "harry",
@@ -30,10 +32,12 @@ function getHarryProgress() {
 
 function calcBasics() {
   var day = getCurrentDay() + 1; // Use +1 for display, but not averages
+  day = day > kChallengeDays ? kChallengeDays : day;
   document.getElementById("day-number").innerText = "Dag " + day + "/" + kChallengeDays;
   document.getElementById("scoreboard--aim-avg").innerText = kExpectedAverage * kUsers + " (" + kExpectedAverage + " per pers)";
   document.getElementById("scoreboard--aim-total").innerText = getHarryProgress();
 
   var d = new Date();
+  d = d >= dayZero ? d : dayZero;
   document.getElementById("step-submit--date").value = d.toISOString().slice(0,10);
 }

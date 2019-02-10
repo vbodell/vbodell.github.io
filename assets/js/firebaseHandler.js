@@ -45,6 +45,7 @@ function updateScoreboard(data) {
   var totalSteps = {};
   var runningTotal = 0;
   var curDay = getCurrentDay();
+  var curDay = curDay > 0 ? curDay : 1;
 
   for (user in data) {
     totalSteps[user] = 0;
