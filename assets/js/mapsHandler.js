@@ -1,11 +1,13 @@
 var route = null;
 var thisMap = null;
-var markers = {
+const markers = {
   [markerKeys.total]: {desc: "Här är vi nu!", marker: null, label: "Vi"},
   [markerKeys.harry]: {desc: "Här borde vi vara...", marker: null, label: "Harry"}
 };
 
-updateMap(markerKeys.harry, getHarryProgress());
+$(function(){
+  updateMap(markerKeys.harry, getHarryProgress());
+});
 
 function initMap() {
   console.log("initializing map");

@@ -1,4 +1,4 @@
-const dayZero = new Date(2019, 1, 12);
+const dayZero = new Date(2019, 1, 11);
 const kUsers = 8;
 const kChallengeDays = 4;
 const kExpectedAverage = 8750;
@@ -10,12 +10,15 @@ const markerKeys = {
   total: "total"
 };
 
-calcBasics();
+$(function(){
+  calcBasics();
+});
 
 function getCurrentDay() {
   var today = new Date();
   // Get current day number, rounded down
   var curDay = parseInt((today - dayZero) / (1000*60*60*24));
+  console.log("Today is " + curDay);
 
   if (curDay > kChallengeDays)
     curDay = kChallengeDays;

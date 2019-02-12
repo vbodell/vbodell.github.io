@@ -1,4 +1,6 @@
-document.getElementById("step-submit--submit-button").addEventListener("click", submitSteps);
+$(function(){
+  document.getElementById("step-submit--submit-button").addEventListener("click", submitSteps);
+});
 
 function submitSteps() {
   var user = document.getElementById("step-submit--competitor").value;
