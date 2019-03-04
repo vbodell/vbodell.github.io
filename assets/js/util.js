@@ -17,7 +17,7 @@ $(function(){
 function getCurrentDay() {
   var today = new Date();
   // Get current day number, rounded down
-  var curDay = parseInt((today - dayZero) / (1000*60*60*24)) + 1;
+  var curDay = parseInt((today - dayZero) / (1000*60*60*24) + 1);
 
   if (curDay > kChallengeDays)
     curDay = kChallengeDays;
