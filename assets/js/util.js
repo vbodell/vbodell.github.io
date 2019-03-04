@@ -1,7 +1,7 @@
-const dayZero = new Date(2019, 1, 11);
+const dayZero = new Date(2019, 2, 6);
 const kUsers = 8;
-const kChallengeDays = 4;
-const kExpectedAverage = 8750;
+const kChallengeDays = 40;
+const kExpectedAverage = 10000;
 const kOrigin = "Räntans Gård";
 const kDestination = "Synålsvägen 19, Bromma";
 
@@ -17,8 +17,7 @@ $(function(){
 function getCurrentDay() {
   var today = new Date();
   // Get current day number, rounded down
-  var curDay = parseInt((today - dayZero) / (1000*60*60*24));
-  console.log("Today is " + curDay);
+  var curDay = parseInt((today - dayZero) / (1000*60*60*24)) + 1;
 
   if (curDay > kChallengeDays)
     curDay = kChallengeDays;
@@ -34,11 +33,12 @@ function getHarryProgress() {
 }
 
 function calcBasics() {
-  var day = getCurrentDay() + 1; // Use +1 for display, but not averages
+  var day = getCurrentDay();
   day = day > kChallengeDays ? kChallengeDays : day;
   document.getElementById("day-number").innerText = "Dag " + day + "/" + kChallengeDays;
   document.getElementById("scoreboard--aim-avg").innerText = kExpectedAverage * kUsers + " (" + kExpectedAverage + " per pers)";
   document.getElementById("scoreboard--aim-total").innerText = getHarryProgress();
+  document.getElementById("scoreboard--aim-today").innerText = kExpectedAverage;
 
   var d = new Date();
   d = d >= dayZero ? d : dayZero;
