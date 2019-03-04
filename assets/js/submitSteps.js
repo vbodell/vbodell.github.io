@@ -25,5 +25,18 @@ function submitSteps() {
     }
     // console.log(user + " submitted " + steps + " steps.");
     writeStepEntry(user, user, submitDate, steps);
+    var alertMsg = steps + " steg";
+
+    if (steps < kExpectedAverage / 2)
+      alertMsg += ", fortsätt kämpa ";
+    else if (steps < kExpectedAverage)
+      alertMsg += ", nästan där ";
+    else if (steps > kExpectedAverage * 1.5)
+      alertMsg += "! Otroligt bra jobbat ";
+    else
+      alertMsg += ", snyggt ";
+
+    alertMsg += user + "!";
+    alert(alertMsg);
   }
 }
