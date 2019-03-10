@@ -1,9 +1,10 @@
-const dayZero = new Date(2019, 2, 6);
+const dayZero = new Date(2019, 2, 11);
 const kUsers = 8;
 const kChallengeDays = 40;
 const kExpectedAverage = 10000;
-const kOrigin = "Räntans Gård";
-const kDestination = "Synålsvägen 19, Bromma";
+const kStepLength = 1.0478
+const kOrigin = "Gibraltar";
+const kDestination = "Räntans Gård§";
 
 const markerKeys = {
   harry: "harry",

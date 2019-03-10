@@ -27,7 +27,7 @@ theme: minima
 plugins:
   - jekyll-feed
 
-start-date: '2019-03-06'
+start-date: '2019-03-11'
 end-date: '2019-04-20'
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
