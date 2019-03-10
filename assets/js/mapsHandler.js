@@ -50,7 +50,7 @@ function addMarker(markerKey, lat, lng) {
 
 function updateMap(key, distance) {
   if (route == null) {
-    setTimeout(function() { updateMap(key, distance); }, 2000); /* Try again in 5 sec */
+    setTimeout(function() { updateMap(key, distance); }, 1000); /* Try again in 1 sec */
     return;
   }
 
@@ -68,7 +68,7 @@ function updateMap(key, distance) {
     var routeStep = routeSteps[i];
     prevStep = routeStep;
 
-    coveredDistance += routeStep['distance']['value'];
+    coveredDistance += routeStep['distance']['value'] * kStepLength;
     if (coveredDistance >= distance)
       break;
   }
