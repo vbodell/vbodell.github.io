@@ -59,6 +59,7 @@ function updateMap(key, distance) {
     addMarker(key, startLoc.lat(), startLoc.lng());
     return;
   }
+  distance *= kStepLength;
 
   var coveredDistance = 0;
   var routeSteps = route['steps'];
@@ -68,7 +69,7 @@ function updateMap(key, distance) {
     var routeStep = routeSteps[i];
     prevStep = routeStep;
 
-    coveredDistance += routeStep['distance']['value'] * kStepLength;
+    coveredDistance += routeStep['distance']['value'];
     if (coveredDistance >= distance)
       break;
   }

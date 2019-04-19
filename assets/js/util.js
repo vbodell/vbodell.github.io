@@ -2,7 +2,7 @@ const dayZero = new Date(2019, 2, 11);
 const kUsers = 8;
 const kChallengeDays = 40;
 const kExpectedAverage = 10000;
-const kStepLength = 1.0478
+const kStepLength = 1.0478;
 const kOrigin = "Gibraltar";
 const kDestination = "Räntans Gård§";
 
