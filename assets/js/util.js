@@ -1,9 +1,9 @@
-const dayZero = new Date(2019, 2, 11);
+const dayZero = new Date(2019, 9, 14); // Month is 0-indexed
 const kUsers = 8;
 const kChallengeDays = 40;
 const kExpectedAverage = 10000;
 const kStepLength = 1.0478;
-const kOrigin = "Gibraltar";
+const kOrigin = "Berlin";
 const kDestination = "Räntans Gård§";
 
 const markerKeys = {
