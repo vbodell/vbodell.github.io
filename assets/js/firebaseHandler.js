@@ -16,7 +16,7 @@ readData();
 function readData() {
   var stepsRef = firebase.database().ref('steps');
   stepsRef.on('value', function(snapshot) {
-    updateScoreboard(snapshot.val());
+    updateScoreboard(snapshot.val(), useTotal);
   });
 }
 
@@ -37,7 +37,7 @@ function writeStepEntry(userId, name, date, steps) {
   });
 }
 
-function updateScoreboard(data) {
+function updateScoreboard(data, updateTotal) {
   var scoreboard = document.getElementById("scoreboard");
   var totalEntry = document.getElementById("scoreboard--total-steps");
   var totalAvgLabel = document.getElementById("scoreboard--total-steps-avg");
@@ -78,5 +78,11 @@ function updateScoreboard(data) {
   totalAvgLabel.innerText = parseInt(runningTotal / curDay) + " (" + parseInt(runningTotal / (curDay * kUsers)) + " per pers)";
   todayAvgLabel.innerText = todaysTotal;
 
-  updateMap(markerKeys.total, runningTotal);
+  if (updateTotal)
+    updateMap(markerKeys.total, runningTotal);
+  else {
+    for (var user in data) {
+      updateMap(markerKeys[user], totalSteps[user]);
+    }
+  }
 }

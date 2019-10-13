@@ -1,10 +1,31 @@
+// TODO: read from json instead? And use that to get index.html data+firebase
+const users = ["Göran",
+"Linnea",
+"Robert",
+"Elin",
+"Simon",
+"Miriam",
+"Victor",
+"Karin"];
+
 const dayZero = new Date(2019, 9, 14); // Month is 0-indexed
-const kUsers = 8;
+// const dayZero = new Date({{ site.start-date }}); // Month is 0-indexed
+const kUsers = users.length;
 const kChallengeDays = 40;
+
 const kExpectedAverage = 10000;
-const kStepLength = 1.0478;
-const kOrigin = "Berlin";
-const kDestination = "Räntans Gård§";
+const kStepLength = 0.587715;
+
+const kOrigin = "Tåtorp";
+const kDestination = "Tåtorp";
+const kWaypoints = [{location: "Mariestad"},
+                    {location: "Hällekis"},
+                    {location: "Skara"},
+                    {location: "Falköping"},
+                    {location: "Hjo"},
+                    {location: "Forsvik"}];
+
+const useTotal = false;
 
 const markerKeys = {
   harry: "harry",
@@ -12,8 +33,18 @@ const markerKeys = {
 };
 
 $(function(){
-  calcBasics();
+  initMarkerKeys();
+  calcBasics(useTotal);
 });
+
+function initMarkerKeys() {
+  // TODO: read from json instead?
+  for (var ndx = 0; ndx < users.length; ndx++) {
+    var name = users[ndx];
+    markerKeys[name] = name;
+    markers[name] = {desc: name, marker: null, label: name};
+  }
+}
 
 function getCurrentDay() {
   var today = new Date();
@@ -28,17 +59,24 @@ function getCurrentDay() {
   return curDay;
 }
 
-function getHarryProgress() {
+function getHarryProgress(useTotal) {
   var curDayNdx = getCurrentDay()
-  return curDayNdx * kExpectedAverage * kUsers;
+  if (useTotal)
+    return curDayNdx * kExpectedAverage * kUsers;
+  return curDayNdx * kExpectedAverage;
 }
 
-function calcBasics() {
+function calcBasics(useTotal) {
   var day = getCurrentDay();
   day = day > kChallengeDays ? kChallengeDays : day;
   document.getElementById("day-number").innerText = "Dag " + day + "/" + kChallengeDays;
-  document.getElementById("scoreboard--aim-avg").innerText = kExpectedAverage * kUsers + " (" + kExpectedAverage + " per pers)";
-  document.getElementById("scoreboard--aim-total").innerText = getHarryProgress();
+
+  if (useTotal)
+    document.getElementById("scoreboard--aim-avg").innerText = kExpectedAverage * kUsers + " (" + kExpectedAverage + " per pers)";
+  else
+    document.getElementById("scoreboard--aim-avg").innerText = kExpectedAverage;
+
+  document.getElementById("scoreboard--aim-total").innerText = getHarryProgress(useTotal);
   document.getElementById("scoreboard--aim-today").innerText = kExpectedAverage;
 
   var d = new Date();

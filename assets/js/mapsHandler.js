@@ -6,7 +6,7 @@ const markers = {
 };
 
 $(function(){
-  updateMap(markerKeys.harry, getHarryProgress());
+  updateMap(markerKeys.harry, getHarryProgress(useTotal));
 });
 
 function initMap() {
@@ -20,13 +20,17 @@ function initMap() {
   var request = {
     origin: kOrigin,
     destination: kDestination,
+    waypoints: kWaypoints,
     travelMode: 'WALKING'
   }
 
   directionsService.route(request, function(response, status) {
     if (status == 'OK') {
-      route = response['routes'][0]['legs'][0];
-      var totalDistance = route['distance']['value'];
+      route = response['routes'][0];
+      var totalDistance = 0;
+      for (var legNdx = 0; legNdx < route['legs'].length; legNdx++) {
+        totalDistance += route['legs'][legNdx]['distance']['value'];
+      }
       console.log("Total distance in meters is: " + totalDistance);
       directionsDisplay.setDirections(response);
     }
@@ -55,23 +59,29 @@ function updateMap(key, distance) {
   }
 
   if (distance == 0) {
-    var startLoc = route['steps'][0]['start_location'];
+    var startLoc = route['legs'][0]['steps'][0]['start_location'];
     addMarker(key, startLoc.lat(), startLoc.lng());
     return;
   }
   distance *= kStepLength;
 
   var coveredDistance = 0;
-  var routeSteps = route['steps'];
-  var prevStep = null;
 
-  for (var i = 0; i < routeSteps.length; i++) {
-    var routeStep = routeSteps[i];
-    prevStep = routeStep;
+  for (var legNdx = 0; legNdx < route['legs'].length; legNdx++) {
+    var routeSteps = route['legs'][legNdx]['steps'];
+    var prevStep = null;
 
-    coveredDistance += routeStep['distance']['value'];
+    for (var i = 0; i < routeSteps.length; i++) {
+      var routeStep = routeSteps[i];
+      prevStep = routeStep;
+
+      coveredDistance += routeStep['distance']['value'];
+      if (coveredDistance >= distance)
+        break;
+    }
     if (coveredDistance >= distance)
       break;
   }
+
   addMarker(key, prevStep['end_location'].lat(), prevStep['end_location'].lng());
 }
