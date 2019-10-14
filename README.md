@@ -3,7 +3,7 @@
 
 A primitive (partly hard-coded) step count challenge for the people of the
 farm Räntan. The actual challenge is found on 
-[vbodell.github.io](vbodell.github.io).
+[vbodell.github.io](https://vbodell.github.io).
 
 The only content is a simple `index.html` file and some scripts. Backend uses
 firebase. [Jekyll](https://jekyllrb.com) with the minima theme is the website
